@@ -1,6 +1,10 @@
-# Vue 3 + Vite
+# Login and Registration System
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+This is a Login and Registration system using vue, html, css and tailwind. At first need to register then check login with same credential. If you reload the page you need to register again.
+
+## Live link(url)
+- [Website](https://banjir-ahammad.com/vue/login-system/)
+- [github repository](https://github.com/banjirahammad/login-system.git)
 
 ## Recommended IDE Setup
 
