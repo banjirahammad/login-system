@@ -8,8 +8,7 @@ const data = reactive({
   isLoginForm: false,
   isRegForm: true,
   users: [],
-  isloged: false,
-
+  isloged: false
 })
 
 const userData = reactive({
