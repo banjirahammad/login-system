@@ -52,15 +52,13 @@ function login() {
   }
 }
 
-
-
 </script>
 
 <template>
   <section class="flex h-screen w-full">
     <div class="w-1/2 flex flex-col justify-center items-center"
       style="background-image: url(https://images.unsplash.com/photo-1690555575753-7aa27df96b52?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80); background-repeat: no-repeat; background-size: cover;">
-        <h1 class="text-5xl font-bold text-white">Ostad Hub!</h1>
+      <h1 class="text-5xl font-bold text-white">Ostad Hub!</h1>
     </div>
     <div class="w-1/2 flex flex-col justify-center items-center bg-gray-200">
 
@@ -144,7 +142,8 @@ function login() {
           </div>
         </form>
         <p class="text-center text-gray-500 text-xs">
-          &copy;2023 <a target="_blank" class="text-orange-500" href="https://banjir-ahammad.com">Banjir Ahammad</a>. All rights reserved.
+          &copy;2023 <a target="_blank" class="text-orange-500" href="https://banjir-ahammad.com">Banjir Ahammad</a>. All
+          rights reserved.
         </p>
       </div>
     </div>
