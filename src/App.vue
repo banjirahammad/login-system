@@ -12,26 +12,29 @@ const data = reactive({
 })
 
 const userData = reactive({
-  name: '',
   username: '',
   email: '',
-  password: ''
+  password: '',
+  cpassword: ''
 })
 
 let notice = ref('')
 
 function addUser() {
-  if (userData.name == '' || userData.username == '' || userData.email == '' || userData.password == '') {
+  if (userData.name == '' || userData.username == '' || userData.cpassword == '' || userData.password == '') {
     notice.value = "All field is Required"
   }
   else {
-    data.users.push({
-      name: userData.name,
-      username: userData.username,
-      email: userData.email,
-      password: userData.password
-    })
-    notice.value = "Registration successfull"
+    if (userData.password === userData.cpassword) {
+      data.users.push({
+        name: userData.name,
+        username: userData.username,
+        email: userData.email,
+        password: userData.password
+      })
+      notice.value = "Registration successfull"
+    } else
+      notice.value = "Confirm Password not match"
   }
 }
 
@@ -63,7 +66,7 @@ function login() {
     <div class="w-1/2 flex flex-col justify-center items-center bg-gray-200">
 
       <template v-if="data.isloged == true">
-        <h2 class="mb-5 text-xl">You are loged! Thank you</h2>
+        <h2 class="mb-5 text-xl">Welcome! You are loged!</h2>
         <h2 class="mb-5 text-xl">Your session is started</h2>
         <button
           class="bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
@@ -78,14 +81,7 @@ function login() {
       <h3 v-show="notice != null" class="text-red-500 mb-5">{{ notice }}</h3>
       <div class="w-full max-w-xs" v-show="data.isloged == false">
         <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" @submit.prevent>
-          <div class="mb-4" v-show="data.isRegForm == true">
-            <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
-              Name
-            </label>
-            <input
-              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              v-model="userData.name" id="name" type="text" placeholder="Name">
-          </div>
+
           <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
               Username
@@ -100,16 +96,24 @@ function login() {
             </label>
             <input
               class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              v-model="userData.email" id="email" type="text" placeholder="email">
+              v-model="userData.email" id="email" type="email" placeholder="email">
           </div>
-          <div class="mb-6">
+          <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
               Password
             </label>
             <input
-              class="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-              v-model="userData.password" id="password" type="password" placeholder="******************">
-            <!-- <p class="text-red-500 text-xs italic">Please choose a password.</p> -->
+              class="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              v-model="userData.password" id="password" type="password" placeholder="*********">
+
+          </div>
+          <div class="mb-6" v-show="data.isRegForm == true">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="cpassword">
+              Confirm Password
+            </label>
+            <input
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              v-model="userData.cpassword" id="cpassword" type="password" placeholder="*********">
           </div>
 
 
@@ -121,11 +125,13 @@ function login() {
               Sign In
             </button>
             <span class="font-bold">OR</span>
-            <a class="hover:bg-orange-500  text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            <button
+              class="hover:bg-orange-500  text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               @click="data.isRegForm = true,
-                data.isLoginForm = false, notice = ''">
+                data.isLoginForm = false, notice = ''" type="button">
               Register
-            </a>
+            </button>
+
           </div>
           <div class="flex items-center justify-between" v-show="data.isRegForm == true">
             <button
@@ -134,11 +140,12 @@ function login() {
               Register
             </button>
             <span class="font-bold">OR</span>
-            <a class="hover:bg-orange-500  text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            <button
+              class="hover:bg-orange-500  text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               @click="data.isLoginForm = true,
-                data.isRegForm = false, notice = ''">
+                data.isRegForm = false, notice = ''" type="button">
               Sign In
-            </a>
+            </button>
           </div>
         </form>
         <p class="text-center text-gray-500 text-xs">
